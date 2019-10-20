@@ -49,9 +49,9 @@ public class ContaController {
 
     @GetMapping(path="/contas")
     public @ResponseBody ResponseEntity<Object> getContas(
-            @RequestParam(defaultValue="1") Integer numeroDaPagina,
+            @RequestParam(defaultValue="0") Integer numeroDaPagina,
             @RequestParam(defaultValue="10") Integer tamanhoDaPagina) {
-        Pageable pageable = PageRequest.of(numeroDaPagina - 1, tamanhoDaPagina);
+        Pageable pageable = PageRequest.of(numeroDaPagina, tamanhoDaPagina);
         try {
             return new ResponseEntity<>(repository.findAll(pageable),HttpStatus.OK);
         } catch (Exception e) {
